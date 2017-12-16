@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button get;
     DatabaseHelper databaseHelper;
     PersonModel personModel;
-    List<PersonModel> personData = new ArrayList<>();
+    List<PersonModel> personData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initView();
 
         databaseHelper = new DatabaseHelper(getApplicationContext());
-        personModel = new PersonModel();
-
-
-
-
-
-
-
+        personData = new ArrayList<>();
 
     }
 
@@ -65,31 +58,49 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         idnumber.setText("");
     }
 
-    @Override
-    public void onClick(View v) {
-        if (!(firstname.getText().toString().isEmpty() && lastname.getText().toString().isEmpty()
-                && birthdate.getText().toString().isEmpty() && gender.getText().toString().isEmpty()
-                && idnumber.getText().toString().isEmpty())) {
+    public boolean notEmpty(){
+        return (!(firstname.getText().toString().equals("")
+                && lastname.getText().toString().equals("")
+                && birthdate.getText().toString().equals("")
+                && gender.getText().toString().equals("")
+                && idnumber.getText().toString().equals("")));
+    }
+
+    public void initData(){
+        if (notEmpty()) {
+            personModel = new PersonModel();
             personModel.setIdNumber(Integer.parseInt(idnumber.getText().toString()));
             personModel.setFirstName(firstname.getText().toString());
             personModel.setLastName(lastname.getText().toString());
             personModel.setGender(gender.getText().toString());
             personModel.setBirthDate(birthdate.getText().toString());
         }
+    }
+
+    @Override
+    public void onClick(View v) {
 
         switch (v.getId()) {
+
             case R.id.add:
-                if (personModel != null && personModel.getIdNumber()!=0) {
+                initData();
+                if (personModel != null) {
                     long rowId = databaseHelper.addPersonData(personModel);
-                    Toast.makeText(getApplicationContext(), Long.toString(rowId), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "added", Toast.LENGTH_SHORT).show();
                 }
+                Toast.makeText(getApplicationContext(), "enter fields", Toast.LENGTH_SHORT).show();
                 clear();
                 break;
+
             case R.id.delete:
-                int rowCount = databaseHelper.deletePersonData(personModel.getIdNumber());
-                Toast.makeText(getApplicationContext(), Integer.toString(rowCount), Toast.LENGTH_SHORT).show();
+                if (!idnumber.getText().toString().equals("")) {
+                    int rowCount = databaseHelper.deletePersonData(Integer.parseInt(idnumber.getText().toString()));
+                    Toast.makeText(getApplicationContext(), "deleted", Toast.LENGTH_SHORT).show();
+                }
+                Toast.makeText(getApplicationContext(), "enter fields", Toast.LENGTH_SHORT).show();
                 clear();
                 break;
+
             case R.id.get:
                 if (databaseHelper.getPersonsData().get(0).getIdNumber()!=0) {
                     personData = databaseHelper.getPersonsData();
