@@ -1,58 +1,58 @@
 package com.example.pc.sqliteexample;
 
-/**
- * Created by PC on 16-Dec-17.
- */
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
-public class PersonModel {
+public class PersonModel extends RealmObject {
 
-    String firstName;
+    private String firstName;
 
-    String lastName;
+    private String lastName;
 
-    String birthDate;
+    private String birthDate;
 
-    String gender;
+    private String gender;
 
-    int idNumber;
+    @PrimaryKey
+    private int idNumber;
 
-    public String getFirstName() {
+    String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public String getLastName() {
+    String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    public String getBirthDate() {
+    String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(String birthDate) {
+    void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 
-    public String getGender() {
+    String getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    void setGender(String gender) {
         this.gender = gender;
     }
 
-    public int getIdNumber() {
+    int getIdNumber() {
         return idNumber;
     }
 
-    public void setIdNumber(int idNumber) {
+    void setIdNumber(int idNumber) {
         this.idNumber = idNumber;
     }
 }

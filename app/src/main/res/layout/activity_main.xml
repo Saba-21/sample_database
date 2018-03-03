@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="0dp"
-        android:layout_weight="5">
+        android:layout_weight="1">
 
     <EditText
         android:layout_width="match_parent"
@@ -51,6 +51,34 @@
     </LinearLayout>
 
     <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="add - sqlite"
+        android:id="@+id/add"/>
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="delete - sqlite"
+        android:id="@+id/delete"/>
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="get - sqlite"
+        android:id="@+id/get"/>
+
+</LinearLayout>
+
+    <LinearLayout
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -60,23 +88,25 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="add"
-            android:id="@+id/add"/>
+            android:text="add - realm"
+            android:id="@+id/addRealm"/>
 
         <Button
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="delete"
-            android:id="@+id/delete"/>
+            android:text="delete - realm"
+            android:id="@+id/deleteRealm"/>
 
         <Button
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="get"
-            android:id="@+id/get"/>
+            android:text="get - realm"
+            android:id="@+id/getRealm"/>
 
     </LinearLayout>
+
+
 
 </LinearLayout>
